@@ -4,13 +4,14 @@
 #
 Name     : perl-Devel-OverloadInfo
 Version  : 0.005
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.005.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.005.tar.gz
 Summary  : 'introspect overloaded operators'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Devel-OverloadInfo-license = %{version}-%{release}
+Requires: perl-Devel-OverloadInfo-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(MRO::Compat)
 BuildRequires : perl(Module::Implementation)
@@ -29,6 +30,7 @@ introspect overloaded operators
 Summary: dev components for the perl-Devel-OverloadInfo package.
 Group: Development
 Provides: perl-Devel-OverloadInfo-devel = %{version}-%{release}
+Requires: perl-Devel-OverloadInfo = %{version}-%{release}
 
 %description dev
 dev components for the perl-Devel-OverloadInfo package.
@@ -42,14 +44,24 @@ Group: Default
 license components for the perl-Devel-OverloadInfo package.
 
 
+%package perl
+Summary: perl components for the perl-Devel-OverloadInfo package.
+Group: Default
+Requires: perl-Devel-OverloadInfo = %{version}-%{release}
+
+%description perl
+perl components for the perl-Devel-OverloadInfo package.
+
+
 %prep
 %setup -q -n Devel-OverloadInfo-0.005
+cd %{_builddir}/Devel-OverloadInfo-0.005
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +71,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,7 +80,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-OverloadInfo
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Devel-OverloadInfo/LICENSE
+cp %{_builddir}/Devel-OverloadInfo-0.005/LICENSE %{buildroot}/usr/share/package-licenses/perl-Devel-OverloadInfo/252145e58792a64dedd5e05316ddbde817434361
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,7 +93,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Devel/OverloadInfo.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -89,4 +100,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Devel-OverloadInfo/LICENSE
+/usr/share/package-licenses/perl-Devel-OverloadInfo/252145e58792a64dedd5e05316ddbde817434361
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Devel/OverloadInfo.pm
