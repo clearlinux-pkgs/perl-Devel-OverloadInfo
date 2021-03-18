@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-OverloadInfo
 Version  : 0.005
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.005.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.005.tar.gz
 Summary  : 'introspect overloaded operators'
@@ -104,4 +104,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Devel/OverloadInfo.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Devel/OverloadInfo.pm
