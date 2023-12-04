@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-OverloadInfo
 Version  : 0.007
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.007.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Devel-OverloadInfo-0.007.tar.gz
 Summary  : 'introspect overloaded operators'
